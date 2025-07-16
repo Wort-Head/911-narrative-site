@@ -2,10 +2,15 @@ const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTe8fVErZdZX_A
 const narrativeContainer = document.getElementById('narrative');
 
 fetch(sheetURL)
-  .then(res => res.text())
+  .then(res => {
+    if (!res.ok) throw new Error("Failed to fetch Google Sheet.");
+    return res.text();
+  })
   .then(csv => {
     const parsed = Papa.parse(csv, { header: true });
     const rows = parsed.data;
+
+    narrativeContainer.innerHTML = ""; // Clear "loading..."
 
     rows.forEach(row => {
       const paragraph = row['Paragraph']?.trim();
@@ -30,5 +35,5 @@ fetch(sheetURL)
     });
   })
   .catch(err => {
-    narrativeContainer.innerHTML = `<p style="color:red;">Error loading narrative: ${err.message}</p>`;
+    narrativeContainer.innerHTML = `<p style="color:red;">⚠️ Error loading narrative: ${err.message}</p>`;
   });
