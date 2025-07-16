@@ -1,21 +1,21 @@
 const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTe8fVErZdZX_A9ypryzdKCAOcftjmQQBBdu9vxwUzcjvatt7De7jtzALKO4-Pqgk4SJVyS0Vj0fYY7/pub?output=csv";
 
-const narrativeSection = document.querySelector('.narrative-lock-section');
-const narrativeWrapper = document.getElementById('narrative-wrapper');
-const progress = document.querySelector('.progress');
-
-// Fetch and parse CSV with PapaParse
 fetch(sheetURL)
   .then(res => res.text())
-  .then(csv => {
-    const parsed = Papa.parse(csv, { header: true });
-    const rows = parsed.data;
+  .then(csvText => {
+    const results = Papa.parse(csvText, {
+      header: true,
+      skipEmptyLines: true,
+      transformHeader: h => h.trim() // Auto-trim headers to avoid issues
+    });
 
-    rows.forEach(row => {
-      const paragraph = row['Paragraph']?.trim();
-      const heading = row['Heading']?.trim();
+    const wrapper = document.getElementById('narrative-wrapper');
 
-      if (!paragraph) return;
+    results.data.forEach(row => {
+      const paragraph = row['paragraph'];
+      const heading = row['heading'] || '';
+
+      if (!paragraph) return; // Skip empty paragraphs
 
       const block = document.createElement('div');
       block.className = 'narrative-block';
@@ -30,6 +30,7 @@ fetch(sheetURL)
       p.textContent = paragraph;
       block.appendChild(p);
 
-      narrativeWrapper.appendChild(block);
+      wrapper.appendChild(block);
     });
-  });
+  })
+  .catch(err => console.error("CSV Fetch or Parse error:", err));
