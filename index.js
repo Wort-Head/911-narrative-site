@@ -4,9 +4,6 @@ const narrativeSection = document.querySelector('.narrative-lock-section');
 const narrativeWrapper = document.getElementById('narrative-wrapper');
 const progress = document.querySelector('.progress');
 
-// LOCK BODY SCROLL INITIALLY
-document.body.classList.add('lock-scroll');
-
 // Fetch and parse CSV with PapaParse
 fetch(sheetURL)
   .then(res => res.text())
@@ -36,16 +33,3 @@ fetch(sheetURL)
       narrativeWrapper.appendChild(block);
     });
   });
-
-// Track scroll progress
-narrativeSection.addEventListener('scroll', () => {
-  const scrollTop = narrativeSection.scrollTop;
-  const scrollHeight = narrativeSection.scrollHeight - narrativeSection.clientHeight;
-  const scrolled = (scrollTop / scrollHeight) * 100;
-  progress.style.width = `${scrolled}%`;
-
-  // Unlock scroll when narrative is complete
-  if (scrolled >= 99) {
-    document.body.classList.remove('lock-scroll');
-  }
-});
