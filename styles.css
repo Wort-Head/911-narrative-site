@@ -1,3 +1,4 @@
+/* Global reset */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,147 +6,48 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
   color: #333;
   line-height: 1.6;
-}
-
-.header {
-  position: sticky;
-  top: 0;
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  border-bottom: 1px solid #ddd;
-  z-index: 1000;
-}
-
-.logo {
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.nav a {
-  margin-left: 1rem;
-  text-decoration: none;
-  color: #444;
-}
-
-.nav a:hover {
-  text-decoration: underline;
-}
-
-.container {
-  display: flex;
-  padding: 2rem;
-  gap: 2rem;
-}
-
-.sidebar {
-  flex: 0 0 200px;
-}
-
-.sidebar ul {
-  list-style: none;
-}
-
-.sidebar a {
-  display: block;
-  padding: 0.5rem 0;
-  color: #555;
-  text-decoration: none;
-}
-
-.sidebar a:hover {
-  color: #000;
-}
-
-.content {
-  flex: 1;
-}
-
-.content h2 {
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  color: #990000;
-}
-
-.content ul {
-  margin: 1rem 0;
-  padding-left: 1.5rem;
-  list-style-type: disc;
-}
-
-.content p {
-  margin: 1rem 0;
-}
-
-.content img {
-  max-width: 100%;
-  margin: 1rem 0;
-}
-
-.footer {
-  background-color: #eee;
-  text-align: center;
   padding: 1rem;
-  font-size: 0.9rem;
-  color: #666;
-  border-top: 1px solid #ccc;
 }
 
-/* Responsive for smaller screens */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    flex: 0 0 auto;
-  }
+/* Header */
+.header {
+  background: #990000;
+  color: white;
+  padding: 1.5rem 1rem;
+  text-align: center;
 }
 
-body.lock-scroll {
-  overflow: hidden;
-}
-
-.narrative-lock-section {
-  position: relative;
-  height: 100vh;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-}
-
-.narrative-wrapper {
-  display: flex;
-  flex-direction: column;
+/* Narrative section */
+#narrative {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
 }
 
 .narrative-block {
-  scroll-snap-align: start;
-  min-height: 100vh;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  margin-bottom: 2rem;
 }
 
-.narrative-progress-bar {
-  position: sticky;
-  bottom: 0;
-  width: 100%;
-  height: 6px;
-  background: #eee;
-  z-index: 10;
+.narrative-block h3 {
+  color: #990000;
+  margin-bottom: 0.5rem;
 }
 
-.narrative-progress-bar .progress {
-  height: 100%;
-  width: 0%;
-  background: #990000;
-  transition: width 0.1s linear;
+.narrative-block p {
+  font-size: 1.1rem;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 4rem;
 }
