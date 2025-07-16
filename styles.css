@@ -1,3 +1,4 @@
+/* Reset and global styles */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,6 +12,12 @@ body {
   line-height: 1.6;
 }
 
+/* Prevent scrolling when narrative is active */
+body.lock-scroll {
+  overflow: hidden;
+}
+
+/* Header bar */
 .header {
   position: sticky;
   top: 0;
@@ -38,12 +45,14 @@ body {
   text-decoration: underline;
 }
 
+/* Main layout */
 .container {
   display: flex;
   padding: 2rem;
   gap: 2rem;
 }
 
+/* Sidebar navigation */
 .sidebar {
   flex: 0 0 200px;
 }
@@ -63,6 +72,7 @@ body {
   color: #000;
 }
 
+/* Main content */
 .content {
   flex: 1;
 }
@@ -88,32 +98,14 @@ body {
   margin: 1rem 0;
 }
 
-.footer {
-  background-color: #eee;
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-  color: #666;
-  border-top: 1px solid #ccc;
-}
-
-/* Responsive for smaller screens */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    flex: 0 0 auto;
-  }
-}
-
-.narrative-section {
+/* Narrative Scroll Section */
+.narrative-lock-section {
   position: relative;
   height: 100vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   scroll-snap-type: y mandatory;
-  border-top: 1px solid #ccc;
+  scroll-behavior: smooth;
+  background-color: white;
 }
 
 .narrative-wrapper {
@@ -128,9 +120,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-bottom: 1px solid #eee;
 }
 
-.narrative-block h2,
 .narrative-block h3 {
   color: #990000;
   margin-bottom: 1rem;
@@ -141,6 +133,7 @@ body {
   max-width: 700px;
 }
 
+/* Progress Bar at bottom of narrative */
 .narrative-progress-bar {
   position: sticky;
   bottom: 0;
@@ -155,4 +148,25 @@ body {
   width: 0%;
   background: #990000;
   transition: width 0.1s linear;
+}
+
+/* Footer */
+.footer {
+  background-color: #eee;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+  border-top: 1px solid #ccc;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    flex: 0 0 auto;
+  }
 }
