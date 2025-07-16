@@ -1,5 +1,5 @@
 const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTe8fVErZdZX_A9ypryzdKCAOcftjmQQBBdu9vxwUzcjvatt7De7jtzALKO4-Pqgk4SJVyS0Vj0fYY7/pub?output=csv";
-const narrativeContainer = document.getElementById('narrative');
+const narrativeContainer = document.getElementById('narrative-wrapper');
 
 fetch(sheetURL)
   .then(res => {
